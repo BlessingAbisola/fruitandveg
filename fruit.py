@@ -34,5 +34,24 @@ def form_input(name):
 	only_named.sort(reverse = True, key = sortByLengthOfName)
 	return json.dumps(only_named)
 
+from flask import Flask, render_template
+import logging
+
+flask_app = Flask(__name__)
+
+logger = logging.getLogger('my_logger')
+logger.setLevel(logging.DEBUG)
+formatter = logging.Formatter('%(asctime)s - %(message)s')
+
+ch = logging.StreamHandler()
+ch.setLevel(logging.DEBUG)
+ch.setFormatter(formatter)
+logger.addHandler(ch)
+
+fh = logging.FileHandler('application_logs.log')
+fh.setLevel(logging.DEBUG)
+fh.setFormatter(formatter)
+logger.addHandler(fh)
+
 
 
